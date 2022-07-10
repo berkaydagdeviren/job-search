@@ -1,15 +1,15 @@
-import { mount } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 
 import MainNav from "@/components/MainNav";
 
 describe("MainNav", () => {
   it("displays company name", () => {
-    const wrapper = mount(MainNav);
+    const wrapper = shallowMount(MainNav);
     expect(wrapper.text()).toMatch("Radical Careers");
   });
 
   it("displays menu items for navigation", () => {
-    const wrapper = mount(MainNav);
+    const wrapper = shallowMount(MainNav);
     const MenuItems = wrapper
       .findAll("[data-test='main-nav-list-item']")
       .map((item) => item.text());
@@ -27,7 +27,7 @@ describe("MainNav", () => {
 
 describe("when user is logged out", () => {
   it("prompts user to log in", () => {
-    const wrapper = mount(MainNav);
+    const wrapper = shallowMount(MainNav);
 
     const loginButton = wrapper.find("[data-test='login-button']");
     const profileImage = wrapper.find("[data-test='profile-image']");
@@ -38,7 +38,7 @@ describe("when user is logged out", () => {
 
 describe("when user is logs in", () => {
   it("displays profile image", async () => {
-    const wrapper = mount(MainNav);
+    const wrapper = shallowMount(MainNav);
     let profileImage = wrapper.find("[data-test='profile-image']");
     expect(profileImage.exists()).toBe(false);
     const loginButton = wrapper.find("[data-test='login-button']");
